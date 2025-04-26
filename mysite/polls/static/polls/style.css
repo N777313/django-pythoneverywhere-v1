@@ -1,0 +1,14 @@
+body {
+    background: white url("images/background.jpg") no-repeat; /*  */
+    background-size: cover;        /* масштабировать фон на весь экран */
+    background-position: center;   /* расположить по центру */
+}
+
+li a {
+    color: green;
+    text-decoration: none;         /* по желанию — убирает подчёркивание */
+}
+
+li a:hover {
+    color: darkgreen;              /* при наведении — тёмно-зелёный */
+}

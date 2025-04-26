@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ product.urlpath }}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+          <h1 class="Typography Typography__XL Typography__XL_Bold">{{ product.name }}</h1>
+          <p class="Typography Description_text__27B77 Description_leftText__v_3LD Description_smallText__1Nrsn Typography__L">Description: <span>{{ product.description }}<span></p>
+        {% if product.is_sale %}
+            <div class="d-flex justify small text-warning mb-2">
+            <div class="bi-star-fill"></div>
+            <div class="bi-star-fill"></div>
+            <div class="bi-star-fill"></div>
+            <div class="bi-star-fill"></div>
+            <div class="bi-star-fill"></div>
+            </div>
+                <!-- Product price-->
+                <strike> ${{ product.price }} </strike>
+                &nbsp;
+                ${{ product.sale_price }}
+        {% else %}
+            {{ product.price }} ₸
+        {% endif%}
+        <br/><br/><br/>
+
+
+        <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<br/><br/><br/><br/><br/><br/><br/>
+{% endblock %}
