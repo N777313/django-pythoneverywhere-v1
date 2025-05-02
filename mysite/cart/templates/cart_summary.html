@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Shopping Cart</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">View Your Cart</p>
+                </div>
+            </div>
+        </header>
+        <br/>
+        <div class="container">
+        {% if cart_products %}
+            {% for product in cart_products %}
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ product.urlpath }}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                        <div class="card-body">
+                        <h1 class="Typography Typography__XL Typography__XL_Bold">{{ product.name }}</h1>
+                        <p class="Typography Description_text__27B77 Description_leftText__v_3LD Description_smallText__1Nrsn Typography__L">Description: <span>{{ product.description }}<span></p>
+                        {% if product.is_sale %}
+                            <div class="d-flex justify small text-warning mb-2">
+                            <div class="bi-star-fill"></div>
+                            <div class="bi-star-fill"></div>
+                            <div class="bi-star-fill"></div>
+                            <div class="bi-star-fill"></div>
+                            <div class="bi-star-fill"></div>
+                        </div>
+                        <!-- Product price-->
+                        <strike> ${{ product.price }} </strike>
+                        &nbsp;
+                        ${{ product.sale_price }}
+                        {% else %}
+                            {{ product.price }} ₸
+
+                        {% endif%}
+                        <br/><br/><br/>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+        {%  else %}
+        There's Nothing in Your Cart...
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        {% endif %}
+        </div>
+
+{% endblock %}

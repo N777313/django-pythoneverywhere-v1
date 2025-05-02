@@ -8,4 +8,5 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path("admin/", admin.site.urls),
     path('', include('store.urls')),
+    path('cart/', include('cart.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Данные пользователя Telegram</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <h1>Ассалаумагалейкум, бул Mini App!</h1>
+
+    <div id="userData" style="margin-top: 20px; font-family: monospace; white-space: pre-wrap;"></div>
+
+    <script>
+        const initData = window.Telegram?.WebApp?.initData;
+        const initDataUnsafe = window.Telegram?.WebApp?.initDataUnsafe;
+
+        if (initData && initData.length > 0) {
+            const userDataDiv = document.getElementById('userData');
+            userDataDiv.textContent = JSON.stringify(initDataUnsafe, null, 4);
+
+            // Автоматически отправляем initData на сервер
+            fetch('/api/save-user/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    initData: initData
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Ответ сервера:', data);
+            })
+            .catch(error => console.error('Ошибка при отправке данных на сервер:', error));
+        } else {
+            const userDataDiv = document.getElementById('userData');
+            userDataDiv.innerHTML = '<span style="color:red;">Страница открыта вне Telegram. Данные недоступны.</span>';
+        }
+    </script>
+</body>
+</html>

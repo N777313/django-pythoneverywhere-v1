@@ -58,15 +58,13 @@
            success: function(json){
                //console.log(json)
                document.getElementById("cart_quantity").textContent = json.qty
-               // Полная перезагрузка страницы
-               //location.reload();
            },
            error: function(xhr, errmsg, err){
 
            },
 
         });
-    });
+    })
 
 </script>
 {% endblock %}

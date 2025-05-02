@@ -60,3 +60,19 @@ class Order(models.Model):
     def __str__(self):
         return self.product
 
+
+
+
+
+# added 27-04-2025 - Telegram User identification
+
+class TelegramUser(models.Model):
+    telegram_id = models.BigIntegerField(unique=True)
+    username = models.CharField(max_length=150, blank=True, null=True)
+    first_name = models.CharField(max_length=150, blank=True, null=True)
+    last_name = models.CharField(max_length=150, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_login_at = models.DateTimeField(auto_now=True)  # ← НОВОЕ ПОЛЕ!
+
+    def __str__(self):
+        return f"{self.username or self.telegram_id}"
